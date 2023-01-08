@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { colors, devices, centerContent } from './variables';
+import { colors, devices } from './variables';
 
 export const GlobalStyle = createGlobalStyle`
   *,
@@ -25,13 +25,6 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
   } 
 
-  .app {    
-    ${centerContent()}
-    
-    flex-direction: column;
-    gap: 20px;
-    height: 100vh;
-  }
 
   h1,
   h2,

@@ -47,6 +47,21 @@ export const fadeIn = () => `
 `;
 
 /**
+ * Loading image placeholder
+ */
+
+export const placeHolderShimmer = () => `
+  @keyframes placeHolderShimmer{
+    0%{
+      background-position: -468px 0
+    }
+    100%{
+      background-position: 468px 0
+    }
+  }
+`;
+
+/**
  * A map of breakpoints
  */
 
