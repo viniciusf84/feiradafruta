@@ -1,4 +1,8 @@
 import { useState, useCallback, useEffect, FormEvent } from 'react';
+// routes
+import { useNavigate } from 'react-router-dom';
+import { HOME } from '../../../config/routes';
+//components
 import Button from '../../../components/Button';
 import InputContainer from '../../../components/InputContainer';
 
@@ -33,6 +37,7 @@ export default function LoginForm() {
 	// };
 
 	const { username, password } = formData;
+	const navigate = useNavigate();
 
 	// Generate JSX code for error message
 	const renderErrorMessage = (error: 'username' | 'password') => {
@@ -107,11 +112,15 @@ export default function LoginForm() {
 		setErrors(initialValues);
 	};
 
-	//
+	// On submit result
 	useEffect(() => {
-		if (isSubmitted && !loginSuccess) {
-			clearForm();
-			setFormData(initialValues);
+		if (isSubmitted) {
+			if (!loginSuccess) {
+				clearForm();
+				setFormData(initialValues);
+			} else {
+				navigate(HOME);
+			}
 		}
 	}, [isSubmitted, loginSuccess]);
 
@@ -124,7 +133,6 @@ export default function LoginForm() {
 		handlePristine();
 	}, [formData]);
 
-	// Login form
 	return (
 		<div className="form">
 			<form method="post" name="loginForm" onSubmit={handleSubmit}>
