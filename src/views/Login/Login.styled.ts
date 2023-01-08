@@ -1,9 +1,17 @@
 import styled from 'styled-components';
-import { colors, fadeIn } from '../../styles/variables';
+import { colors, fadeIn, centerContent } from '../../styles/variables';
 
-export const LoginContainer = styled.section`
-	box-shadow: ${colors.box_shadow};
-	width: 480px;
+export const LoginContainer = styled.main`
+	${centerContent()}
+
+	flex-direction: column;
+	gap: 20px;
+	height: 100vh;
+
+	.login-form__wrapper {
+		box-shadow: ${colors.box_shadow};
+		width: 480px;
+	}
 
 	.login-form {
 		${fadeIn()}
