@@ -3,7 +3,7 @@ import { colors, fadeIn } from '../../styles/variables';
 
 export const LoginContainer = styled.section`
 	box-shadow: ${colors.box_shadow};
-	width: 400px;
+	width: 480px;
 
 	.login-form {
 		${fadeIn()}

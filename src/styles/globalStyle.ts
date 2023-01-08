@@ -6,16 +6,16 @@ export const GlobalStyle = createGlobalStyle`
   ::after,
   ::before {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
   :root {
     font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
     font-size: 16px;
     line-height: 24px;
-    font-weight: 400;
-
-    color-scheme: light dark;
-    color: rgba(0, 0, 0, 0.87);
+    font-weight: 400;    
+    
     background-color: ${colors.background_clear};
 
     font-synthesis: none;
@@ -23,11 +23,6 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
-  }
-
-  html,
-  body, #root {
-    
   } 
 
   .app {    

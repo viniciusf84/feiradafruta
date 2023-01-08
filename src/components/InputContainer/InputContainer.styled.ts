@@ -21,6 +21,7 @@ export const Container = styled.div`
 		border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 		padding: 1rem 0.5rem;
 		font-size: 1rem;
+		transition: 0.2s ease-in border-color;
 
 		&:focus {
 			border-bottom: 2px solid ${colors.green};

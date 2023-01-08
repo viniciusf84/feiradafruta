@@ -12,7 +12,7 @@ export const colors = {
 	gray: '#999999',
 	green_clear: '#7fb19a',
 	background_clear: '#f2f6f8',
-	background_dark: '#222222',
+	background_dark: '#242424',
 	background_gray: '#5d5e5f',
 	text_dark: '#000000',
 	text_clear: '#ffffff',

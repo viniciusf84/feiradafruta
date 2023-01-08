@@ -16,6 +16,7 @@ export const SubmitButton = styled.button`
 	font-size: 1rem;
 	padding: 0.7rem;
 	width: 100%;
+	transition: 0.2s ease-in background-color;
 
 	&:disabled {
 		background-color: ${colors.green_clear};
