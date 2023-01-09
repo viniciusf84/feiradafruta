@@ -76,15 +76,11 @@ const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
 	useEffect(() => {
 		const getTotal = () => {
-			const cartTotal = cart.reduce(function (
-				total: number,
-				current: FruitProps,
-			) {
-				return total + current.price;
-			},
-			0);
+			const cartTotal = cart.reduce((total: number, current: FruitProps) => {
+				return (total += current.price);
+			}, 0);
 
-			return cartTotal;
+			return cartTotal.toFixed(2);
 		};
 
 		setTotal(getTotal());
