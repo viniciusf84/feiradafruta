@@ -36,7 +36,7 @@ const api = [
 	{
 		id: 12,
 		name: 'Manga',
-		slug: 'maca',
+		slug: 'manga',
 		price: 3.75,
 		image: Mango,
 	},

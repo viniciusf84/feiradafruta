@@ -28,7 +28,7 @@ export default function App() {
 					<Route path={routes.LOGIN} element={<Login />} />
 					<Route path={routes.HOME} element={<Home />} />
 					<Route path="*" element={<Error404 />} />
-					<Route path={`${routes.PROFILE}/:id`} element={<Profile />} />
+					<Route path={routes.PROFILE} element={<Profile />} />
 				</Routes>
 				<Footer
 					text={`Feira da Fruta ${new Date().getFullYear()} - Tem até a jaca do meu bem`}

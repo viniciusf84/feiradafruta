@@ -1,65 +1,54 @@
-import React, {
-	useContext,
-	useCallback,
-	useState,
-	useEffect,
-	useMemo,
-	useRef,
-} from 'react';
+import { useContext, useCallback, useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router';
+
+// routes
+import { PROFILE } from '../../config/routes';
 
 // hooks
 import { ShopContext } from '../../contexts/ShopContext';
+
+// types
+import { FruitProps } from '../../utils/types';
 
 // components
 import SearchInput from '../../components/SearchInput';
 import LoadingContent from '../../components/LoadingContent';
 import Image from '../../components/Image';
 
-// service
-import { getPokemonByName } from '../../services';
-
 // styles
 import { SearchResults, SearchItem } from './Search.styled';
 
 export default function Search() {
 	const [isLoading, setIsLoading] = useState(false);
-	const [search, setSearch] = useState(null);
-	const [result, setResult] = useState(null);
+	const [result, setResult] = useState<FruitProps[] | null>(null);
 	const [display, setDisplay] = useState(false);
 
 	const shopContext = useContext(ShopContext);
-	const { setSelectedPokemon } = shopContext.actions;
+	const { setSelectedItem, shopData, search, setSearch } = shopContext;
 
 	const navigate = useNavigate();
 
 	const searchResultsRef = useRef(null);
 
-	const getSearchResults = useCallback(async (str) => {
-		setIsLoading(true);
-		try {
-			const response = await getPokemonByName(str);
+	const getSearchResults = useCallback((str: string) => {
+		setSearch(str);
+		const searchData = shopData.filter(
+			(item) =>
+				item.slug ===
+				str
+					.normalize('NFD')
+					.replace(/[\u0300-\u036f]/g, '')
+					.toLowerCase(),
+		);
 
-			setResult(response.data);
-		} catch (error) {
-			setResult(undefined);
-			console.error(error);
-		}
-		setIsLoading(false);
+		console.log(searchData);
+
+		setResult(searchData);
 	}, []);
 
-	const onSetNewSearch = useCallback((value) => {
-		setSearch(value);
-		getSearchResults(value.toLowerCase());
-	}, []);
-
-	const getImage = useMemo(() => {
-		return GetImageUrl(result);
-	}, [result]);
-
-	const selectItem = useCallback((data) => {
-		setSelectedPokemon(data);
-		navigate(`/profile/${data.name}`);
+	const selectItem = useCallback((data: FruitProps) => {
+		navigate(PROFILE);
+		setSelectedItem(data);
 
 		// closes the search result section
 		setDisplay(false);
@@ -96,17 +85,17 @@ export default function Search() {
 	}, [searchResultsRef]);
 
 	useEffect(() => {
-		if (search) {
+		if (result) {
 			setDisplay(true);
 		}
-	}, [search]);
+	}, [result]);
 
 	return (
 		<>
 			<SearchInput
 				name="search-input"
-				placeholder="Search for your favorite pokemon"
-				onSearch={(e) => onSetNewSearch(e)}
+				placeholder="Tinha laranja, morango e banana..."
+				onSearch={(e: string) => getSearchResults(e)}
 			/>
 
 			{display && (
@@ -117,21 +106,17 @@ export default function Search() {
 				>
 					<LoadingContent
 						isLoading={isLoading}
-						loadingText={`Searching for ${search}`}
+						loadingText={`Procurando por ${search}`}
 					>
-						<>
-							{result && (
-								<SearchItem
-									onClick={() => selectItem({ ...result, image: getImage })}
-									tabIndex="0"
-								>
-									<Image src={getImage} alt={result.name} />
+						{result && result.length > 0 ? (
+							<SearchItem tabIndex={0} onClick={() => selectItem(result[0])}>
+								<Image src={result[0].image} alt={result[0].name} />
 
-									<p>{result.name}</p>
-								</SearchItem>
-							)}
-							{result === undefined && <p>{search} not found.</p>}
-						</>
+								<p>{result[0].name}</p>
+							</SearchItem>
+						) : (
+							<p>Não encontramos {search} na Feira da Fruta.</p>
+						)}
 					</LoadingContent>
 				</SearchResults>
 			)}

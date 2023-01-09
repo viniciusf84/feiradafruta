@@ -6,7 +6,7 @@ import { SearchInputStyled } from './SearchInput.styled';
 interface SearchInputProps {
 	name: string;
 	placeholder: string;
-	onSearch: () => void;
+	onSearch: (e: string) => void;
 }
 
 function SearchInput({ name, placeholder, onSearch }: SearchInputProps) {

@@ -22,7 +22,7 @@ function Results() {
 
 	const onSelectItem = (item: FruitProps) => {
 		setSelectedItem(item);
-		navigate(`${PROFILE}/${item.slug}`);
+		navigate(PROFILE);
 	};
 
 	const displayFruitList = useCallback((shop: FruitProps[], title: string) => {
