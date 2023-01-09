@@ -1,3 +1,5 @@
 import useLocalState from './useLocalState';
+import groupArrayByKey from './groupArrayByKey';
+import smoothScrollTo from './SmoothScrollTo';
 
-export { useLocalState };
+export { useLocalState, groupArrayByKey, smoothScrollTo };

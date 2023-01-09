@@ -25,6 +25,17 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
   } 
 
+  html {
+    height: 100%;
+  }
+  
+  body {
+    min-height: 100%;
+  }
+
+  body > div {
+    min-height: 100%;
+  }
 
   h1,
   h2,

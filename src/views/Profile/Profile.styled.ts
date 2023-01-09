@@ -1,150 +1,146 @@
-import styled from "styled-components";
-import { rem, transitions } from "polished";
-import { colors, fadeIn, devices } from "../../styles/variables";
+import styled from 'styled-components';
+import { rem, transitions } from 'polished';
+import { colors, fadeIn, devices } from '../../styles/variables';
 
 export const Details = styled.article`
-  ${fadeIn()};
+	${fadeIn()};
 
-  opacity: 1;
-  margin-bottom: 60px;
+	opacity: 1;
+	min-height: calc(100vh - 107px);
+	padding-top: 40px;
 
-  h1 {
-    font-size: ${rem("40px")};
-    margin: 0 0 2rem;
-  }
+	h1 {
+		font-size: ${rem('40px')};
+		margin: 0 0 2rem;
+	}
 
-  a.back {
-    display: inline-block;
-    background-color: none;
-    color: ${(props) => props.theme.colors.primary};
-    font-weight: bold;
-    padding: 10px 0;
-    margin: 30px 0 40px;
-    ${transitions("background-color 0.2s ease-out")};
+	a.back {
+		display: inline-block;
+		background-color: none;
+		color: ${colors.green};
+		font-weight: bold;
+		padding: 10px 0;
+		margin: 30px 0 40px;
+		${transitions('background-color 0.2s ease-out')};
 
-    &:hover {
-      color: ${colors.text_1};
-    }
+		&:hover {
+			color: ${colors.text_gray};
+		}
 
-    svg {
-      margin-right: 8px;
-    }
-  }
+		svg {
+			margin-right: 8px;
+		}
+	}
 
-  .row {
-    display: flex;
-    gap: 2rem;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-top: 2rem;
-    flex-direction: column-reverse;
+	.row {
+		display: flex;
+		gap: 2rem;
+		justify-content: space-between;
+		align-items: flex-start;
 
-    @media ${devices.tablet} {
-      flex-direction: row;
-    }
+		flex-direction: column-reverse;
 
-    .col {
-      width: 100%;
+		@media ${devices.tablet} {
+			flex-direction: row;
+		}
 
-      @media ${devices.tablet} {
-        width: 50%;
-      }
+		.col {
+			width: 100%;
 
-      &__info {
-        width: 100%;
+			@media ${devices.tablet} {
+				width: 50%;
+			}
 
-        @media ${devices.tablet} {
-          width: 70%;
-        }
-      }
+			&__info {
+				width: 100%;
 
-      &__add {
-        background-color: ${colors.white};
-        padding: 16px 24px;
+				@media ${devices.tablet} {
+					width: 70%;
+				}
+			}
 
-        @media ${devices.tablet} {
-          width: 50%;
-        }
+			&__add {
+				background-color: ${colors.white};
+				padding: 1.6rem 2rem;
 
-        span {
-          font-size: ${rem("12px")};
-        }
-      }
+				@media ${devices.tablet} {
+					width: 50%;
+				}
 
-      .image-wrapper {
-        animation: fadeIn 1s;
-        background-color: ${colors.white};
-        margin-bottom: 32px;
+				span {
+					font-size: ${rem('12px')};
+				}
+			}
 
-        figure {
-          margin: 0 0 16px;
-        }
-      }
-    }
+			.image-wrapper {
+				animation: fadeIn 1s;
+				background-color: ${colors.white};
+				margin-bottom: 32px;
 
-    .list {
-      padding: 0;
-      margin: 0 0 16px;
+				figure {
+					margin: 0 0 16px;
+				}
+			}
+		}
 
-      li {
-        list-style: none;
-        display: inline;
+		.list {
+			padding: 0;
+			margin: 0 0 16px;
 
-        &:after {
-          content: ", ";
-        }
+			li {
+				list-style: none;
+				display: inline;
 
-        &:last-of-type {
-          &:after {
-            content: "";
-          }
-        }
-      }
-    }
-  }
+				&:after {
+					content: ', ';
+				}
 
-  .text {
-    margin: 0 30px 0 0px;
+				&:last-of-type {
+					&:after {
+						content: '';
+					}
+				}
+			}
+		}
+	}
 
-    @media ${devices.tablet} {
-      margin: 0 30px 0 20px;
-    }
+	.text {
+		margin: 0 30px 0 0px;
 
-    p {
-      margin-bottom: ${rem("14px")};
-    }
+		@media ${devices.tablet} {
+			margin: 0 30px 0 20px;
+		}
 
-    @media ${devices.tablet} {
-      margin: 0;
-    }
+		p {
+			margin-bottom: ${rem('14px')};
+		}
 
-    span {
-      font-weight: bold;
-    }
+		@media ${devices.tablet} {
+			margin: 0;
+		}
 
-    .price {
-      font-size: ${rem("42px")};
-      margin: 0;
-    }
-  }
+		span {
+			font-weight: bold;
+		}
 
-  .small {
-    display: block;
-    margin: 10px 0;
-    font-size: ${rem("13px")};
-  }
+		.price {
+			font-size: ${rem('42px')};
+			margin: 0;
+		}
+	}
 
-  strong {
-    color: ${colors.text_3};
-    font-weight: normal;
-  }
+	.small {
+		display: block;
+		margin: 10px 0;
+		font-size: ${rem('13px')};
+	}
 
-  .plot {
-    margin-top: 2rem;
-    color: ${colors.text_3};
-  }
+	strong {
+		color: ${colors.text_gray};
+		font-weight: normal;
+	}
 
-  a {
-    color: ${colors.yellow};
-  }
+	a {
+		color: ${colors.yellow};
+	}
 `;

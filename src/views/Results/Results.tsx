@@ -1,4 +1,8 @@
 import { useCallback, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+// routes
+import { PROFILE } from '../../config/routes';
 
 // hooks
 import { ShopContext } from '../../contexts/ShopContext';
@@ -13,38 +17,42 @@ import { FruitProps } from '../../utils/types';
 
 function Results() {
 	const shopContext = useContext(ShopContext);
-	const { isLoading, shopData, message } = shopContext;
+	const { isLoading, shopData, message, setSelectedItem } = shopContext;
+	const navigate = useNavigate();
 
-	const displayPokemonList = useCallback(
-		(shop: FruitProps[], title: string) => {
-			if (shop && shop.length > 0) {
-				return (
-					<>
-						<h1 className="page-title">Feira da Fruta</h1>
+	const onSelectItem = (item: FruitProps) => {
+		setSelectedItem(item);
+		navigate(`${PROFILE}/${item.slug}`);
+	};
 
-						{shop.map((item: FruitProps) => (
-							<Item
-								key={item.id}
-								id={item.id}
-								name={item.name}
-								image={item.image}
-								price={item.price}
-							/>
-						))}
-					</>
-				);
-			}
+	const displayFruitList = useCallback((shop: FruitProps[], title: string) => {
+		if (shop && shop.length > 0) {
+			return (
+				<>
+					<h1 className="page-title">O que a Feira da Fruta tem</h1>
 
-			return;
-		},
-		[],
-	);
+					{shop.map((item: FruitProps) => (
+						<Item
+							key={item.id}
+							id={item.id}
+							name={item.name}
+							image={item.image}
+							price={item.price}
+							onClick={() => onSelectItem(item)}
+						/>
+					))}
+				</>
+			);
+		}
+
+		return;
+	}, []);
 
 	return (
 		<div className="wrapper container-fluid">
 			<LoadingContent isLoading={isLoading} loadingText="Carregando conteúdo">
 				<ResultList id="results">
-					{displayPokemonList(shopData, message)}
+					{displayFruitList(shopData, message)}
 				</ResultList>
 			</LoadingContent>
 		</div>

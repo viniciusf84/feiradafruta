@@ -1,16 +1,18 @@
-import styled from "styled-components";
-import { rem } from "polished";
+import styled from 'styled-components';
+import { rem } from 'polished';
 
 export const HomeStyled = styled.section`
-  .home__icon {
-    margin-bottom: 30px;
-  }
+	min-height: calc(100vh - 107px);
 
-  p {
-    font-size: ${rem("13px")};
-  }
+	.home__icon {
+		margin-bottom: 30px;
+	}
 
-  .btn {
-    margin-top: 50px;
-  }
+	p {
+		font-size: ${rem('13px')};
+	}
+
+	.btn {
+		margin-top: 50px;
+	}
 `;

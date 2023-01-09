@@ -22,9 +22,9 @@ export const ResultList = styled.section`
 			content: '';
 			background-color: ${colors.green};
 			width: 100px;
-			height: 8px;
+			height: 4px;
 			display: block;
-			margin-top: 4px;
+			margin-top: 12px;
 		}
 	}
 

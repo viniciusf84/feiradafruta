@@ -9,6 +9,11 @@ import { ShopContextProvider } from '../contexts/ShopContext';
 import Login from '../views/Login/Login';
 import Home from '../views/Home';
 import Error404 from '../views/Error404';
+import Profile from '../views/Profile';
+
+// components
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export default function App() {
 	const isAuthorized = true;
@@ -17,12 +22,17 @@ export default function App() {
 		<BrowserRouter>
 			<ShopContextProvider>
 				<GlobalStyle />
+				{isAuthorized && <Header pageTitle="Feira da Fruta" />}
 				<Routes>
 					{/* <Route path={'/'} element={isAuthorized ? <Home /> : <Login />} /> */}
 					<Route path={routes.LOGIN} element={<Login />} />
 					<Route path={routes.HOME} element={<Home />} />
 					<Route path="*" element={<Error404 />} />
+					<Route path={`${routes.PROFILE}/:id`} element={<Profile />} />
 				</Routes>
+				<Footer
+					text={`Feira da Fruta ${new Date().getFullYear()} - Tem até a jaca do meu bem`}
+				/>
 			</ShopContextProvider>
 		</BrowserRouter>
 	);

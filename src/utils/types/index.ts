@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, ReactNode } from 'react';
 export interface FruitProps {
 	id: number;
 	name: string;
+	slug: string;
 	price: number;
 	image: string;
 }
@@ -16,13 +17,15 @@ export interface ShopContextProps {
 	cart: FruitProps[];
 	displayToast: boolean;
 	total: number;
+	search: string;
 	checkout: boolean;
 	resetCart: boolean;
 	setIsLoading: Dispatch<SetStateAction<boolean>>;
 	setShopData: () => void;
-	setSelectedFruit: () => void;
+	setSelectedItem: () => void;
 	setMessage: () => void;
 	setAddToCart: () => void;
+	setSearch: () => void;
 	setDisplayToast: Dispatch<SetStateAction<boolean>>;
 	setTotal: Dispatch<SetStateAction<number>>;
 	setCheckout: Dispatch<SetStateAction<boolean>>;
