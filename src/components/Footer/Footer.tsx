@@ -1,12 +1,16 @@
-import React from "react";
-import { StyledFooter } from "./Footer.styled";
+import React from 'react';
+import { StyledFooter } from './Footer.styled';
 
-function Footer({ text }) {
-  return (
-    <StyledFooter id="footer">
-      <p>{text}</p>
-    </StyledFooter>
-  );
+interface FooterProps {
+	text: string;
+}
+
+function Footer({ text }: FooterProps) {
+	return (
+		<StyledFooter id="footer">
+			<p>{text}</p>
+		</StyledFooter>
+	);
 }
 
 export default Footer;
