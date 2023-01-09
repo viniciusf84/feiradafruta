@@ -17,14 +17,12 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 export default function App() {
-	const isAuthorized = true;
-
 	return (
 		<BrowserRouter>
 			<LoginContextProvider>
 				<ShopContextProvider>
 					<GlobalStyle />
-					{isAuthorized && <Header pageTitle="Feira da Fruta" />}
+					<Header pageTitle="Feira da Fruta" />
 					<Routes>
 						{/* <Route path={'/'} element={isAuthorized ? <Home /> : <Login />} /> */}
 						<Route path={routes.LOGIN} element={<Login />} />

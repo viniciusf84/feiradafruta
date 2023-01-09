@@ -10,6 +10,7 @@ import HeaderCart from '../HeaderCart';
 
 // hook
 import { ShopContext } from '../../contexts/ShopContext';
+import { LoginContext } from '../../contexts/LoginContext';
 
 interface HeaderProps {
 	pageTitle: string;
@@ -17,41 +18,41 @@ interface HeaderProps {
 
 const Header = ({ pageTitle }: HeaderProps) => {
 	const shopContext = useContext(ShopContext);
+	const loginContext = useContext(LoginContext);
 	const { cart, total } = shopContext;
+	const { isAuthorized } = loginContext;
 
-	return (
-		<>
-			<HeaderStyled id="header">
-				<div className="mobile">
-					<div className="wrapper">
-						<div className="brand start-xs">
-							<Link to="/">{pageTitle}</Link>
-						</div>
+	return isAuthorized ? (
+		<HeaderStyled id="header">
+			<div className="mobile">
+				<div className="wrapper">
+					<div className="brand start-xs">
+						<Link to="/">{pageTitle}</Link>
+					</div>
 
-						<HeaderCart items={cart} total={total} />
+					<HeaderCart items={cart} total={total} />
+				</div>
+
+				<div className="search-wrapper">
+					<Search />
+				</div>
+			</div>
+
+			<div className="desktop">
+				<div className="wrapper container-fluid">
+					<div className="brand start-xs">
+						<Link to="/">{pageTitle}</Link>
 					</div>
 
 					<div className="search-wrapper">
 						<Search />
 					</div>
+
+					<HeaderCart items={cart} total={total} />
 				</div>
-
-				<div className="desktop">
-					<div className="wrapper container-fluid">
-						<div className="brand start-xs">
-							<Link to="/">{pageTitle}</Link>
-						</div>
-
-						<div className="search-wrapper">
-							<Search />
-						</div>
-
-						<HeaderCart items={cart} total={total} />
-					</div>
-				</div>
-			</HeaderStyled>
-		</>
-	);
+			</div>
+		</HeaderStyled>
+	) : null;
 };
 
 export default Header;
