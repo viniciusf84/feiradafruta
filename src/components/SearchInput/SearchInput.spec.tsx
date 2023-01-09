@@ -1,6 +1,6 @@
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { toBeInTheDocument, toHaveValue } from '@testing-library/jest-dom';
 
 import SearchInput from './SearchInput';
 
@@ -11,13 +11,17 @@ const onSearch = jest.fn();
 
 describe('SearchInput', () => {
 	it('should render placeholder text if empty', () => {
-		render(<SearchInput name={name} placeholder={placeholder} />);
+		render(
+			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
+		);
 
 		expect(screen.getByPlaceholderText(placeholder)).toBeInTheDocument();
 	});
 
 	it('button should start disabled', () => {
-		render(<SearchInput name={name} placeholder={placeholder} />);
+		render(
+			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
+		);
 
 		const button = screen.getByTestId(searchButton);
 
@@ -25,7 +29,9 @@ describe('SearchInput', () => {
 	});
 
 	it('button should be enabled after type 3 characters', () => {
-		render(<SearchInput name={name} placeholder={placeholder} />);
+		render(
+			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
+		);
 
 		const input = screen.getByTestId(name);
 		const button = screen.getByTestId(searchButton);
@@ -36,7 +42,9 @@ describe('SearchInput', () => {
 	});
 
 	it('should render user text', () => {
-		render(<SearchInput name={name} placeholder={placeholder} />);
+		render(
+			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
+		);
 
 		const input = screen.getByTestId(name);
 
@@ -53,7 +61,7 @@ describe('SearchInput', () => {
 		const input = screen.getByTestId(name);
 
 		userEvent.click(input);
-		userEvent.type(input, 'Hello{enter}');
+		userEvent.type(input, 'Hello');
 
 		expect(onSearch).toHaveBeenCalledTimes(1);
 	});
@@ -62,6 +70,10 @@ describe('SearchInput', () => {
 		render(
 			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
 		);
+
+		const input = screen.getByTestId(name);
+
+		userEvent.type(input, 'Hello');
 
 		const button = screen.getByTestId(searchButton);
 

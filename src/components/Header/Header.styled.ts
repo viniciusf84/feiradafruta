@@ -17,21 +17,6 @@ export const HeaderStyled = styled.header`
 		color: ${colors.red};
 	}
 
-	.brand {
-		font-size: ${rem('26px')};
-		font-weight: bold;
-		text-shadow: ${colors.black} 1px 1px 1px;
-		border-radius: 4px;
-		padding: 0 10px 0 0;
-		height: 30px;
-		line-height: 30px;
-		width: 200px;
-
-		@media ${devices.tablet} {
-			width: 33%;
-		}
-	}
-
 	.search-wrapper {
 		width: 67%;
 		position: relative;

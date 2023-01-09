@@ -32,6 +32,7 @@ export default function Search() {
 
 	const getSearchResults = useCallback((str: string) => {
 		setSearch(str);
+
 		const searchData = shopData.filter(
 			(item) =>
 				item.slug ===

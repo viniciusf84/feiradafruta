@@ -33,7 +33,6 @@ export default function Cart({ list, total }: CartProps) {
 	const { setCheckout } = shopContext;
 
 	const displayCart = useMemo(() => {
-		console.log(list);
 		return list.map((listItem) => (
 			<CartItem key={listItem.item.name}>
 				<Image src={listItem.item.image} alt={listItem.item.name} />

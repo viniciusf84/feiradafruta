@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { colors, devices } from './variables';
+import { rem } from 'polished';
 
 export const GlobalStyle = createGlobalStyle`
   *,
@@ -70,5 +71,21 @@ export const GlobalStyle = createGlobalStyle`
       padding: 0 32px;
     }
   }
+
+  .brand {
+		border-radius: 4px;
+    color: ${colors.red};
+		font-size: ${rem('26px')};
+		font-weight: bold;
+		text-shadow: ${colors.black} 1px 1px 1px;
+		padding: 0 10px 0 0;
+		height: 30px;
+		line-height: 30px;
+		width: 200px;
+
+		@media ${devices.tablet} {
+			width: 33%;
+		}
+	}
   
 `;

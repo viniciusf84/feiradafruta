@@ -1,7 +1,10 @@
-import { useState, useCallback, useEffect, FormEvent } from 'react';
+import { useState, useCallback, useContext, useEffect, FormEvent } from 'react';
 // routes
 import { useNavigate } from 'react-router-dom';
 import { HOME } from '../../../config/routes';
+// context
+import { LoginContext } from '../../../contexts/LoginContext';
+
 //components
 import Button from '../../../components/Button';
 import InputContainer from '../../../components/InputContainer';
@@ -23,11 +26,14 @@ export default function LoginForm() {
 	const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 	const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
+	const loginContext = useContext(LoginContext);
+	const { isAuthorized, setIsAuthorized } = loginContext;
 	// User Login info
 	const database = [
 		{
 			username: 'usuario',
 			password: '123456',
+			name: 'Bateman',
 		},
 	];
 
@@ -119,10 +125,17 @@ export default function LoginForm() {
 				clearForm();
 				setFormData(initialValues);
 			} else {
-				navigate(HOME);
+				setIsAuthorized(true);
 			}
 		}
 	}, [isSubmitted, loginSuccess]);
+
+	// Redirected to Home on loging success
+	useEffect(() => {
+		if (isAuthorized) {
+			navigate(HOME);
+		}
+	}, [isAuthorized]);
 
 	// Validation callback
 	useEffect(() => {

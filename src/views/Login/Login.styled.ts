@@ -1,3 +1,4 @@
+import { rem } from 'polished';
 import styled from 'styled-components';
 import { colors, fadeIn, centerContent } from '../../styles/variables';
 
@@ -23,7 +24,7 @@ export const LoginContainer = styled.main`
 
 	.title {
 		background-color: ${colors.green};
-		font-size: 1.8rem;
+		font-size: ${rem(26)};
 		padding: 1.2rem 1.6rem;
 		color: ${colors.white};
 	}

@@ -1,5 +1,9 @@
 import { Dispatch, SetStateAction, ReactNode } from 'react';
 
+export interface LoginProps {
+	isAuthorized: boolean;
+	setIsAuthorized: Dispatch<SetStateAction<boolean>>;
+}
 export interface FruitProps {
 	id: number;
 	name: string;

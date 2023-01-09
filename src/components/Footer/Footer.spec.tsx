@@ -1,15 +1,14 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import { toBeInTheDocument } from "@testing-library/jest-dom";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 
-import Footer from "./Footer";
+import Footer from './Footer';
 
-const textProp = "Pokestore 2021";
+const textProp = 'Feira da Fruita';
 
-describe("Footer", () => {
-  it("renders given text", () => {
-    render(<Footer text={textProp} />);
+test('Footer', () => {
+	it('renders given text', () => {
+		const { getByText } = render(<Footer text={textProp} />);
 
-    expect(screen.getByText(textProp)).toBeInTheDocument();
-  });
+		expect(getByText(textProp)).toBeInTheDocument();
+	});
 });

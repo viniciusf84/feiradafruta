@@ -5,11 +5,13 @@ import {
 	FC,
 	PropsWithChildren,
 } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useLocalState from '../utils/useLocalState';
 import { ShopContextProps, FruitProps } from '../utils/types';
 
 // service
 import api from '../services/api';
+import { HOME } from '../config/routes';
 
 const ShopContext = createContext<ShopContextProps>(null);
 
@@ -51,6 +53,7 @@ const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		setResetCart,
 	};
 
+	const navigate = useNavigate();
 	// Fetching fruit data
 	useEffect(() => {
 		async function getApiData(obj: FruitProps[]) {
@@ -94,6 +97,7 @@ const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			setResetCart(true);
 			setResetCart(false);
 			setSelectedItem(null);
+			navigate(HOME);
 		}
 	}, [checkout]);
 
