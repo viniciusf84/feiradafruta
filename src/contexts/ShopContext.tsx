@@ -7,6 +7,7 @@ import {
 } from 'react';
 import useLocalState from '../utils/useLocalState';
 import { ShopContextProps, FruitProps } from '../utils/types';
+
 // service
 import api from '../services/api';
 
@@ -15,6 +16,7 @@ const ShopContext = createContext<ShopContextProps>(null);
 const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [shopData, setShopData] = useLocalState('data', []);
+	const [search, setSearch] = useLocalState('search', null);
 	const [selectedItem, setSelectedItem] = useLocalState('selected', null);
 	const [message, setMessage] = useLocalState('message', '');
 	const [cart, setAddToCart] = useLocalState('cart', []);
@@ -29,6 +31,7 @@ const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 		selectedItem,
 		message,
 		cart,
+		search,
 		displayToast,
 		total,
 		checkout,
@@ -38,8 +41,9 @@ const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const actions = {
 		setIsLoading,
 		setShopData,
-		setSelectedFruit: setSelectedItem,
+		setSelectedItem,
 		setMessage,
+		setSearch,
 		setAddToCart,
 		setDisplayToast,
 		setTotal,

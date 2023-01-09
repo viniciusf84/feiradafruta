@@ -1,64 +1,65 @@
-import styled from "styled-components";
-import { rem, rgba, transitions } from "polished";
-import { colors, devices } from "../../styles/variables";
+import styled from 'styled-components';
+import { rem, transitions } from 'polished';
+import { colors, devices } from '../../styles/variables';
 
 export const HeaderStyled = styled.header`
-  padding: 1rem 0rem;
-  background-color: ${(props) => props.theme.colors.primary};
-  ${transitions("background-color 0.2s ease-out")};
+	padding: 1rem 0rem;
+	background-color: ${colors.green};
+	width: 100%;
 
-  .wrapper {
-    display: flex;
-  }
+	${transitions('background-color 0.2s ease-out')};
 
-  a {
-    color: ${colors.yellow};
-  }
+	.wrapper {
+		display: flex;
+	}
 
-  .brand {
-    font-size: ${rem("22px")};
-    font-weight: bold;
-    text-shadow: ${colors.blue} 2px 3px 0px;
-    border-radius: 4px;
-    padding: 0 10px 0 0;
-    height: 30px;
-    line-height: 30px;
-    width: 33%;
-  }
+	a {
+		color: ${colors.red};
+	}
 
-  .search-wrapper {
-    width: 67%;
-    position: relative;
-  }
+	.brand {
+		font-size: ${rem('26px')};
+		font-weight: bold;
+		text-shadow: ${colors.black} 1px 1px 1px;
+		border-radius: 4px;
+		padding: 0 10px 0 0;
+		height: 30px;
+		line-height: 30px;
+		width: 200px;
 
-  .desktop {
-    display: none;
+		@media ${devices.tablet} {
+			width: 33%;
+		}
+	}
 
-    @media ${devices.tablet} {
-      display: block;
-    }
-  }
+	.search-wrapper {
+		width: 67%;
+		position: relative;
+	}
 
-  .mobile {
-    display: block;
+	.desktop {
+		display: none;
 
-    .wrapper {
-      justify-content: space-between;
-    }
+		@media ${devices.tablet} {
+			display: block;
+		}
+	}
 
-    .search-wrapper {
-      width: 100%;
-      padding: 0 16px;
-      margin-top: 8px;
-    }
+	.mobile {
+		display: block;
 
-    @media ${devices.tablet} {
-      display: none;
-    }
-  }
-`;
+		.wrapper {
+			justify-content: space-between;
+		}
 
-export const SubHeader = styled.div`
-  background-color: ${(props) => rgba(props.theme.colors.primary, 0.4)};
-  ${transitions("background-color 0.2s ease-out")};
+		.search-wrapper {
+			width: 100%;
+			padding: 0 16px;
+			margin-top: 8px;
+		}
+
+		@media ${devices.tablet} {
+			display: none;
+		}
+	}
 `;
