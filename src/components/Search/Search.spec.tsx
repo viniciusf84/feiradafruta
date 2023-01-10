@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor, act } from '@testing-library/react';
 import { ShopContextProvider } from '../../contexts/ShopContext';
 import userEvent from '@testing-library/user-event';
 import Search from './Search';
@@ -7,13 +7,16 @@ import Search from './Search';
 const searchResults = 'search-results';
 const searchInput = 'search-input';
 const searchButton = 'search-button';
+const result = {
+	id: 312,
+	name: 'Maçã',
+	slug: 'maca',
+	price: 10,
+	image: 'img',
+};
 
 describe('Search', () => {
 	test('fetches results from search and displays them', async () => {
-		const result = { name: 'Maçã' };
-
-		const promise = Promise.resolve(result);
-
 		render(
 			<ShopContextProvider>
 				<Search />
@@ -25,13 +28,15 @@ describe('Search', () => {
 		await userEvent.type(screen.getByTestId(searchInput), 'Maçã');
 		await userEvent.click(button);
 
-		await (() => promise);
+		// await act(() => Promise.resolve(result));
 
-		expect(screen.getByTestId(searchResults)).toHaveTextContent('Maçã');
+		await waitFor(async () => {
+			expect(screen.getByTestId(searchResults)).toHaveTextContent('Maçã');
+		});
 	});
 
 	test('fetches results from search and fails', async () => {
-		await (() => Promise.reject(new Error()));
+		await act(() => Promise.reject(new Error()));
 
 		render(
 			<ShopContextProvider>
@@ -44,8 +49,10 @@ describe('Search', () => {
 		await userEvent.type(screen.getByTestId(searchInput), 'paletó');
 		await userEvent.click(button);
 
-		expect(screen.getByTestId(searchResults)).toHaveTextContent(
-			'Não encontramos paletó na Feira da Fruta.',
-		);
+		await waitFor(async () => {
+			expect(screen.getByTestId(searchResults)).toHaveTextContent(
+				'Não encontramos paletó na Feira da Fruta.',
+			);
+		});
 	});
 });

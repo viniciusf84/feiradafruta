@@ -1,7 +1,5 @@
 import { useState, useCallback, useContext, useEffect, FormEvent } from 'react';
-// routes
-import { useNavigate } from 'react-router-dom';
-import { HOME } from '../../../config/routes';
+
 // context
 import { LoginContext } from '../../../contexts/LoginContext';
 
@@ -28,6 +26,7 @@ export default function LoginForm() {
 
 	const loginContext = useContext(LoginContext);
 	const { isAuthorized, setIsAuthorized } = loginContext;
+
 	// User Login info
 	const database = [
 		{
@@ -37,13 +36,7 @@ export default function LoginForm() {
 		},
 	];
 
-	// const errors = {
-	// 	username: 'O usuário informado é inválido.',
-	// 	password: 'A senha informada é inválida. Tente novamente.',
-	// };
-
 	const { username, password } = formData;
-	const navigate = useNavigate();
 
 	// Generate JSX code for error message
 	const renderErrorMessage = (error: 'username' | 'password') => {
@@ -130,13 +123,6 @@ export default function LoginForm() {
 		}
 	}, [isSubmitted, loginSuccess]);
 
-	// Redirected to Home on loging success
-	useEffect(() => {
-		if (isAuthorized) {
-			navigate(HOME);
-		}
-	}, [isAuthorized]);
-
 	// Validation callback
 	useEffect(() => {
 		if (isPristine && isSubmitted) {
@@ -151,6 +137,7 @@ export default function LoginForm() {
 			<form method="post" name="loginForm" onSubmit={handleSubmit}>
 				<InputContainer
 					id="user"
+					dataTestId="username-input"
 					inputType="text"
 					label="Usuário"
 					name="username"
@@ -162,6 +149,7 @@ export default function LoginForm() {
 
 				<InputContainer
 					id="pass"
+					dataTestId="password-input"
 					inputType="password"
 					label="Senha"
 					name="password"
@@ -171,7 +159,11 @@ export default function LoginForm() {
 					onChange={handleChange}
 				/>
 
-				<Button text="Entrar" isDisabled={!isValid} />
+				<Button
+					dataTestId="submit-button"
+					text="Entrar"
+					isDisabled={!isValid}
+				/>
 			</form>
 
 			{isSubmitted && !loginSuccess && isPristine && (

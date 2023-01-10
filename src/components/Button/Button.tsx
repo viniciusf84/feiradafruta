@@ -1,14 +1,19 @@
 import { ButtonContainer, SubmitButton } from './Button.styled';
 
 interface ButtonProps {
+	dataTestId: string;
 	text: string;
 	isDisabled: boolean;
 }
 
-const Button = ({ text, isDisabled }: ButtonProps) => {
+const Button = ({ dataTestId, text, isDisabled }: ButtonProps) => {
 	return (
 		<ButtonContainer>
-			<SubmitButton type="submit" disabled={isDisabled}>
+			<SubmitButton
+				data-testid={dataTestId}
+				type="submit"
+				disabled={isDisabled}
+			>
 				{text}
 			</SubmitButton>
 		</ButtonContainer>

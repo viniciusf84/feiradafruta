@@ -12,13 +12,13 @@ import { ShopContext } from '../../contexts/ShopContext';
 import { CartItem, TotalSection } from './Cart.styled';
 import { CartProps } from '../../utils/types';
 
-export default function Cart({ list, total }: CartProps) {
+export default function Cart({ items, total }: CartProps) {
 	const shopContext = useContext(ShopContext);
 
 	const { setCheckout } = shopContext;
 
 	const displayCart = useMemo(() => {
-		return list.map((listItem) => (
+		return items.map((listItem) => (
 			<CartItem key={listItem.item.name}>
 				<Image src={listItem.item.image} alt={listItem.item.name} />
 
@@ -33,11 +33,11 @@ export default function Cart({ list, total }: CartProps) {
 				</div>
 			</CartItem>
 		));
-	}, [list]);
+	}, [items]);
 
 	return (
-		list &&
-		list.length > 0 && (
+		items &&
+		items.length > 0 && (
 			<>
 				{displayCart}
 

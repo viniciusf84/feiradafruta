@@ -85,7 +85,7 @@ export default function HeaderCart({ items, total }: CartProps) {
 						{emptyCart ? (
 							<p>Seu carrinho ainda está vazio.</p>
 						) : (
-							<Cart list={formattedArray} total={total} />
+							<Cart items={formattedArray} total={total} />
 						)}
 					</CartModal>
 
