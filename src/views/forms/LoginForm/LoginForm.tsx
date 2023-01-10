@@ -3,9 +3,13 @@ import { useState, useCallback, useContext, useEffect, FormEvent } from 'react';
 // context
 import { LoginContext } from '../../../contexts/LoginContext';
 
+// services
+import { auth } from '../../../services/users';
+
 //components
 import Button from '../../../components/Button';
 import InputContainer from '../../../components/InputContainer';
+import LoadingContent from '../../../components/LoadingContent';
 
 interface FormProps {
 	username?: string | undefined;
@@ -21,20 +25,12 @@ export default function LoginForm() {
 	const [errors, setErrors] = useState<FormProps>(initialValues);
 	const [isPristine, setIsPristine] = useState<boolean>(false);
 	const [isValid, setIsValid] = useState<boolean>(false);
+	const [isValidating, setIsValidating] = useState<boolean>(false);
 	const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 	const [loginSuccess, setLoginSuccess] = useState<boolean>(false);
 
 	const loginContext = useContext(LoginContext);
-	const { isAuthorized, setIsAuthorized } = loginContext;
-
-	// User Login info
-	const database = [
-		{
-			username: 'usuario',
-			password: '123456',
-			name: 'Bateman',
-		},
-	];
+	const { setIsAuthorized } = loginContext;
 
 	const { username, password } = formData;
 
@@ -89,20 +85,17 @@ export default function LoginForm() {
 	}, [errors, isPristine]);
 
 	// Checking information after submitting form
-	const handleSubmit = (event: FormEvent) => {
+	const handleSubmit = async (event: FormEvent) => {
 		event.preventDefault();
-		setIsSubmitted(true);
-
-		// Find user login info
-		const userData = database.find((user) => user.username === username);
-
-		if (userData) {
-			// Login success
-			setLoginSuccess(userData.password === password);
-		} else {
-			// Login fail
-			setLoginSuccess(false);
+		setIsValidating(true);
+		try {
+			const response = await auth({ username, password });
+			setLoginSuccess(!!response);
+		} catch (err) {
+			console.log(err);
 		}
+		setIsValidating(false);
+		setIsSubmitted(true);
 	};
 
 	// Clear form
@@ -165,12 +158,13 @@ export default function LoginForm() {
 					isDisabled={!isValid}
 				/>
 			</form>
-
-			{isSubmitted && !loginSuccess && isPristine && (
-				<div className="error text-center">
-					Autenticação inválida. Tente novamente.
-				</div>
-			)}
+			<LoadingContent isLoading={isValidating} loadingText="Autenticando...">
+				{isSubmitted && !loginSuccess && isPristine && (
+					<div className="error text-center">
+						Autenticação inválida. Tente novamente.
+					</div>
+				)}
+			</LoadingContent>
 		</div>
 	);
 }

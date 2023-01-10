@@ -6,7 +6,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 interface LoadingContentProps {
 	isLoading: boolean;
 	loadingText: string;
-	children: JSX.Element;
+	children: JSX.Element | boolean;
 }
 
 const LoadingContent = ({

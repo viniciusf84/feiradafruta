@@ -9,8 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import useLocalState from '../utils/useLocalState';
 import { ShopContextProps, FruitProps } from '../utils/types';
 
-// service
-import api from '../services/api';
+// services
+import { fetchProducts } from '../services/products';
+
+// routes
 import { HOME } from '../config/routes';
 
 const ShopContext = createContext<ShopContextProps>(null);
@@ -56,13 +58,11 @@ const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const navigate = useNavigate();
 	// Fetching fruit data
 	useEffect(() => {
-		async function getApiData(obj: FruitProps[]) {
+		async function handleFetchProducts() {
 			setIsLoading(true);
 
 			try {
-				const response = await new Promise((resolve) =>
-					setTimeout(() => resolve(obj), 2000),
-				);
+				const response = await fetchProducts();
 				setShopData(response);
 			} catch (err) {
 				console.log(err);
@@ -71,7 +71,7 @@ const ShopContextProvider: FC<PropsWithChildren> = ({ children }) => {
 			setIsLoading(false);
 		}
 
-		getApiData(api);
+		handleFetchProducts();
 	}, []);
 
 	useEffect(() => {

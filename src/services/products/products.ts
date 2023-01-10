@@ -1,10 +1,10 @@
-import Apple from '../assets/images/maca.jpg';
-import Pear from '../assets/images/pera.jpg';
-import Banana from '../assets/images/banana.jpg';
-import Pineaple from '../assets/images/abacaxi.jpg';
-import Mango from '../assets/images/manga.png';
+import Apple from '../../assets/images/maca.jpg';
+import Pear from '../../assets/images/pera.jpg';
+import Banana from '../../assets/images/banana.jpg';
+import Pineaple from '../../assets/images/abacaxi.jpg';
+import Mango from '../../assets/images/manga.png';
 
-const api = [
+const products = [
 	{
 		id: 312,
 		name: 'Maçã',
@@ -42,4 +42,4 @@ const api = [
 	},
 ];
 
-export default api;
+export default products;
