@@ -18,6 +18,7 @@ export const SearchInputStyled = styled.div`
 		&:focus,
 		&:active {
 			border-color: ${colors.white};
+			outline: 1px solid ${colors.green};
 		}
 	}
 

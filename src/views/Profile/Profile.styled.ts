@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { rem, transitions } from 'polished';
+import { rem, transitions, rgba } from 'polished';
 import { colors, fadeIn, devices } from '../../styles/variables';
 
-export const Details = styled.article`
+export const Details = styled.div`
 	${fadeIn()};
 
 	opacity: 1;
@@ -45,7 +45,9 @@ export const Details = styled.article`
 		}
 
 		.col {
+			background-color: ${colors.white};
 			width: 100%;
+			box-shadow: ${rgba(colors.black, 0.2)} 0px 2px 6px;
 
 			@media ${devices.tablet} {
 				width: 50%;
@@ -106,6 +108,7 @@ export const Details = styled.article`
 
 	.text {
 		margin: 0 30px 0 0px;
+		padding: 1rem 1.4rem;
 
 		@media ${devices.tablet} {
 			margin: 0 30px 0 20px;

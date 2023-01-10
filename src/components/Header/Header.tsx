@@ -1,5 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+// routes
+import { HOME } from '../../config/routes';
 
 // styles
 import { HeaderStyled } from './Header.styled';
@@ -27,7 +29,7 @@ const Header = ({ pageTitle }: HeaderProps) => {
 			<div className="mobile">
 				<div className="wrapper">
 					<div className="brand start-xs">
-						<Link to="/">{pageTitle}</Link>
+						<Link to={HOME}>{pageTitle}</Link>
 					</div>
 
 					<HeaderCart items={cart} total={total} />
@@ -41,7 +43,7 @@ const Header = ({ pageTitle }: HeaderProps) => {
 			<div className="desktop">
 				<div className="wrapper container-fluid">
 					<div className="brand start-xs">
-						<Link to="/">{pageTitle}</Link>
+						<Link to={HOME}>{pageTitle}</Link>
 					</div>
 
 					<div className="search-wrapper">

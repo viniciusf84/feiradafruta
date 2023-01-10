@@ -17,6 +17,8 @@ export const HeaderCartButton = styled.button`
 	background-color: transparent;
 	cursor: pointer;
 	border-radius: 8px;
+	position: relative;
+
 	${transitions('background-color 0.2s ease-out')};
 
 	@media ${devices.tablet} {
@@ -32,7 +34,7 @@ export const HeaderCartButton = styled.button`
 	}
 
 	span {
-		font-size: ${rem('14px')};
+		font-size: 1.2rem;
 		color: ${colors.white};
 		${transitions('transform 0.2s ease-out')};
 	}
@@ -45,7 +47,10 @@ export const HeaderCartButton = styled.button`
 
 export const CartModal = styled.div`
 	${fadeIn()}
-
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
 	position: absolute;
 	right: 0;
 	top: 30px;
