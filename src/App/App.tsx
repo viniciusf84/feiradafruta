@@ -24,7 +24,6 @@ export default function App() {
 					<GlobalStyle />
 					<Header pageTitle="Feira da Fruta" />
 					<Routes>
-						{/* <Route path={'/'} element={isAuthorized ? <Home /> : <Login />} /> */}
 						<Route path={routes.LOGIN} element={<Login />} />
 						<Route path={routes.HOME} element={<Home />} />
 						<Route path="*" element={<Error404 />} />

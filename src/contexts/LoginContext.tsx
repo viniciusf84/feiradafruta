@@ -1,8 +1,9 @@
 import { useEffect, createContext, FC, PropsWithChildren } from 'react';
+import { useLocation } from 'react-router-dom';
 import useLocalState from '../utils/useLocalState';
 // routes
 import { useNavigate } from 'react-router-dom';
-import { LOGIN, HOME } from '../config/routes';
+import * as routes from '../config/routes';
 
 import { LoginProps } from '../utils/types';
 
@@ -12,6 +13,7 @@ const LoginContextProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [isAuthorized, setIsAuthorized] = useLocalState('authorized', false);
 
 	const navigate = useNavigate();
+	const location = useLocation();
 
 	const state = {
 		isAuthorized,
@@ -23,10 +25,15 @@ const LoginContextProvider: FC<PropsWithChildren> = ({ children }) => {
 
 	// redirects user on login
 	useEffect(() => {
+		const isKnownLocation =
+			Object.values(routes).indexOf(location.pathname) > -1;
+
+		if (!isKnownLocation) return;
+
 		if (isAuthorized) {
-			navigate(HOME);
+			navigate(routes.HOME);
 		} else {
-			navigate(LOGIN);
+			navigate(routes.LOGIN);
 		}
 	}, [isAuthorized]);
 
