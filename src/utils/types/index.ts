@@ -35,3 +35,20 @@ export interface ShopContextProps {
 	setCheckout: Dispatch<SetStateAction<boolean>>;
 	setResetCart: Dispatch<SetStateAction<boolean>>;
 }
+
+export interface CartItemProps {
+	name: string;
+	price: string;
+	image: string;
+	total: number;
+}
+
+export interface CartListProps {
+	item: CartProps;
+	quantity: number;
+}
+
+export interface CartProps {
+	items: CartItemProps[];
+	total: number;
+}

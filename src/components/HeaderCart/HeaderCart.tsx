@@ -10,6 +10,8 @@ import ShadowStyled from '../Shadow';
 import GroupArrayByKey from '../../utils/groupArrayByKey';
 import SmoothScrollTo from '../../utils/smoothScrollTo';
 
+//types
+import { CartProps, CartListProps } from '../../utils/types';
 // styles
 import {
 	HeaderCartStyled,
@@ -17,11 +19,11 @@ import {
 	CartModal,
 } from './HeaderCart.styled';
 
-export default function HeaderCart({ items, total }) {
+export default function HeaderCart({ items, total }: CartProps) {
 	const node = useRef();
 
-	const [isOpen, setIsOpen] = useState(false);
-	const [formattedArray, setFormattedArray] = useState([]);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [formattedArray, setFormattedArray] = useState<CartListProps[]>([]);
 
 	const emptyCart = useMemo(() => {
 		if (items.length > 0) {
@@ -80,9 +82,11 @@ export default function HeaderCart({ items, total }) {
 			{isOpen && (
 				<>
 					<CartModal className={emptyCart ? 'empty' : 'ololo'}>
-						{emptyCart && <p>Seu carrinho ainda está vazio.</p>}
-
-						{!emptyCart && <Cart list={formattedArray} total={total} />}
+						{emptyCart ? (
+							<p>Seu carrinho ainda está vazio.</p>
+						) : (
+							<Cart list={formattedArray} total={total} />
+						)}
 					</CartModal>
 
 					<ShadowStyled onClick={() => setIsOpen(false)} />

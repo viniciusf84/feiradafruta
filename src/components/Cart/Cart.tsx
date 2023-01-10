@@ -10,22 +10,7 @@ import { ShopContext } from '../../contexts/ShopContext';
 
 // styles
 import { CartItem, TotalSection } from './Cart.styled';
-import { FruitProps } from '../../utils/types';
-
-interface CartItemProps {
-	name: string;
-	price: string;
-	image: string;
-	total: number;
-}
-
-interface CartListProps {
-	item: CartProps;
-	quantity: number;
-}
-interface CartProps extends CartItemProps {
-	list: CartListProps[];
-}
+import { CartProps } from '../../utils/types';
 
 export default function Cart({ list, total }: CartProps) {
 	const shopContext = useContext(ShopContext);
@@ -54,9 +39,7 @@ export default function Cart({ list, total }: CartProps) {
 		list &&
 		list.length > 0 && (
 			<>
-				{/* <Scrollbars style={{ height: 'calc(100% - 120px)' }}> */}
 				{displayCart}
-				{/* </Scrollbars> */}
 
 				<TotalSection>
 					<div>

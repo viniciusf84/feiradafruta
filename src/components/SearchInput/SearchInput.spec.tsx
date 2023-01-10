@@ -28,7 +28,7 @@ describe('SearchInput', () => {
 		expect(button).toBeDisabled();
 	});
 
-	it('button should be enabled after type 3 characters', () => {
+	it('button should be enabled after type 3 characters', async () => {
 		render(
 			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
 		);
@@ -36,48 +36,51 @@ describe('SearchInput', () => {
 		const input = screen.getByTestId(name);
 		const button = screen.getByTestId(searchButton);
 
-		userEvent.type(input, 'Hello');
+		await userEvent.click(input);
+		await userEvent.type(input, 'Hellooo');
 
 		expect(button).toBeEnabled();
 	});
 
-	it('should render user text', () => {
+	it('should render user text', async () => {
 		render(
 			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
 		);
 
 		const input = screen.getByTestId(name);
 
-		userEvent.click(input);
-		userEvent.type(input, 'Hello');
+		await userEvent.click(input);
+		await userEvent.type(input, 'Hello');
+
 		expect(input).toHaveValue('Hello');
 	});
 
-	it('should call the onSearch callback handler', () => {
+	it('should call the onSearch callback handler on Enter', async () => {
 		render(
 			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
 		);
 
 		const input = screen.getByTestId(name);
 
-		userEvent.click(input);
-		userEvent.type(input, 'Hello');
+		await userEvent.click(input);
+		await userEvent.type(input, 'Hello');
+		await userEvent.keyboard('[Enter]');
 
 		expect(onSearch).toHaveBeenCalledTimes(1);
 	});
 
-	it('should call the onSearch callback handler by clicking on button', () => {
+	it('should call the onSearch callback handler by clicking on button', async () => {
 		render(
 			<SearchInput name={name} placeholder={placeholder} onSearch={onSearch} />,
 		);
 
 		const input = screen.getByTestId(name);
 
-		userEvent.type(input, 'Hello');
+		await userEvent.type(input, 'Hello');
 
 		const button = screen.getByTestId(searchButton);
 
-		userEvent.click(button);
+		await userEvent.click(button);
 
 		expect(onSearch).toBeCalled();
 	});

@@ -5,10 +5,10 @@ import Footer from './Footer';
 
 const textProp = 'Feira da Fruita';
 
-test('Footer', () => {
+describe('Footer', () => {
 	it('renders given text', () => {
-		const { getByText } = render(<Footer text={textProp} />);
+		render(<Footer text={textProp} />);
 
-		expect(getByText(textProp)).toBeInTheDocument();
+		expect(screen.getByText(textProp)).toBeInTheDocument();
 	});
 });
